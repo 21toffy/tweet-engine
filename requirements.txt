@@ -47,7 +47,9 @@ distro==1.7.0
 distro-info===1.1build1
 Django==4.2.7
 django-celery-beat==2.5.0
+django-celery-results==2.5.1
 django-cors-headers==4.3.1
+django-rest-passwordreset==1.4.0
 django-timezone-field==6.1.0
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
