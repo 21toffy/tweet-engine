@@ -2,7 +2,7 @@ from django.conf import settings
 from Auth.mixin import MyUserManager
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.auth.models import AbstractBaseUser
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db.models.signals import post_save
 import uuid
 from datetime import datetime
@@ -10,7 +10,7 @@ from datetime import datetime
 
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     """
     User data model
     Structure of a user profile
@@ -43,11 +43,10 @@ class User(AbstractBaseUser):
     date_of_birth = models.DateField(null=True)
     gender = models.CharField(choices=GENDER, max_length=255, null=True)
     has_set_password = models.BooleanField(default=False)
-
-
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
-    is_merchant = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
 
 
     # admin required fields

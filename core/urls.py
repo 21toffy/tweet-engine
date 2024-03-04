@@ -9,7 +9,7 @@ from rest_framework_simplejwt.views import TokenVerifyView
 from django.urls import re_path
 from django.views.static import serve
 
-from Auth.views import custom_404_handler
+from Auth.views import custom_404_handler, dashboard
 
 
 def trigger_error(request):
@@ -19,6 +19,9 @@ def trigger_error(request):
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('auth/', include('Auth.urls')),
+    path('campaign/', include('Campaign.urls')),
+    path('', dashboard, name='dashboard'),
 
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}), 
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),

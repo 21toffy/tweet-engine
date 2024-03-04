@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block title %} Create Campaign {% endblock title %}
+{% block page_ttle %} Create Campaign {% endblock page_ttle %} 
+{% block content%}
+
+<div class="card shadow mb-4">
+  <div class="card-header py-3">
+    <h6 class="m-0 font-weight-bold text-primary">Create campaign Form</h6>
+  </div>
+
+  <div class="card-body">
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}success{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+
+    <form
+      class="row"
+      method="post"
+      action="{% url 'campaign:create_campaign' %}"
+    >
+      {% csrf_token %}
+      <div class="col-md-6">
+        {{ form.campaign_name.label_tag }} {{ form.campaign_name }}
+      </div>
+
+      <div class="col-md-6">
+        {{ form.campaign_type.label_tag }} {{ form.campaign_type }}
+      </div>
+
+      <div class="col-md-6">
+        <label for="{{ form.point.id_for_label }}" class="your-custom-label-class">point per task completion:</label>        
+
+        {{ form.point }}</div>
+
+      <div class="col-md-6">{{ form.reward.label_tag }} {{ form.reward }}</div>
+
+      <div class="col-md-6">
+        {{ form.reward_value.label_tag }} {{ form.reward_value }}
+      </div>
+
+
+
+      <div class="col-md-6">
+        {{ form.tweet_number_frequency.label_tag }} {{ form.tweet_number_frequency }}
+      </div>
+
+      <div class="col-md-4">
+        {{ form.tweet_time_frequency.label_tag }} {{ form.tweet_time_frequency }}
+      </div>
+
+      <div class="col-md-4">
+        {{ form.total_tweets_needed.label_tag }} {{ form.total_tweets_needed }}
+      </div>
+
+      <div class="col-md-4">
+        <label for="{{ form.tweet.id_for_label }}" class="your-custom-label-class">Users To be participate</label>        
+        {{ form.users_needed }}
+      </div>
+
+      <div class="col-md-12 my-3">
+        <label for="{{ form.tweet.id_for_label }}" class="your-custom-label-class">Make Campaign piblic?</label>        
+        {{ form.public }}
+      </div>
+
+      <div class="col-md-12 my-3">
+        <label for="{{ form.tweet.id_for_label }}" class="your-custom-label-class">Make Campaign Active?</label>        
+        {{ form.active }}
+      </div>
+
+      <div class="col-md-12">
+        <label for="{{ form.tweet.id_for_label }}" class="your-custom-label-class">Tweet/hashtag to match:</label>        
+        {{ form.tweet }}
+      </div>
+
+      <div class="col-md-12 mt-5">
+      <button type="submit" class="btn btn-primary btn-block">Create Campaign</button>
+    </div>
+
+    </form>
+  </div>
+
+  {% endblock content %}
+</div>

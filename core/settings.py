@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "Auth",
     "Common",
+    'Campaign',
 
     #3rd party
     "corsheaders",
@@ -130,7 +131,7 @@ elif ENV == "staging":
     }
 
     # update the DEBUG mode
-    DEBUG = False
+    DEBUG = True
 else:
     DATABASES = {
         "default": {
@@ -138,6 +139,7 @@ else:
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+    DEBUG = True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -266,10 +268,10 @@ STATICFILES_DIRS = (
 )
 
 
-AUTH_USER_MODEL = 'auth.User'
+AUTH_USER_MODEL = 'Auth.User'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_URL = '/404'
+LOGIN_URL = '/auth/login'
 
